@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="input1" type="number">
+    <form>
+      <select name="operators">
+        <option value="none" selected > </option>
+        <option value="addition">+</option>
+        <option value="subtraction">-</option>
+        <option value="multiplication">*</option>
+        <option value="division">/</option>
+      </select>
+    </form>
+    <input id="input2" type="number">
+    <br>
+    <button> = </button>
+    <div><span id="cresult"> </span></div>
+
+
+    <script>
+      const $input1 = document.querySelector('#input1');
+      const $input2 = document.querySelector('#input2');
+      const $button = document.querySelector('button');
+      const $select = document.querySelector('select');
+      const $result = document.querySelector('#cresult');
+      let number1 = ''; // 첫 숫자
+      let number2 = ''; // 두번째 숫자
+      let result;  // 결과 숫자
+      let operator = '';
+
+
+      const onInput1 = (event) => {
+        number1 = Number(event.target.value);
+      };
+      const onInput2 = (event) => {
+        number2 = Number(event.target.value);
+      };
+
+      const handleOnChange = (event) => {
+        console.log(event.target.value);
+        operator = String(event.target.value);
+      }
+
+
+      const onClickButton = (event) => {
+        if (operator != '' && number1 != '' && number2 != '') {
+          switch (operator) {
+            case 'addition':
+                result = Number(number1 + number2);
+                console.log(result);
+                $result.textContent = result;
+            break;
+            case 'subtraction':
+                result = Number(number1 - number2);
+                console.log(result);
+                $result.textContent = result;
+            break;
+            case 'multiplication':
+                result = Number(number1 * number2);
+                console.log(result);
+                $result.textContent = result;
+            break;
+            case 'division':
+                result = Number(number1 / number2);
+                console.log(result);
+                $result.textContent = result;
+            break;
+            default:
+
+                break;
+        }
+        }
+        else
+          alert("입력이 올바르지 않습니다.");
+
+      }
+
+      $input1.addEventListener('input', onInput1);
+      $input2.addEventListener('input', onInput2);
+      $button.addEventListener('click', onClickButton);
+      $select.addEventListener('change', handleOnChange);
+    </script>
+</body>
+</html>
